@@ -1,0 +1,44 @@
+{
+  "stonkbrokers": {
+    "1": "https://raw2.seadn.io/robinhood/0x539cdd042c2f3d93ebc5be7dfff0c79f3b4fabf0/be93c3be95987ff93f7dd874bf3813/8ebe93c3be95987ff93f7dd874bf3813.svg",
+    "2": "https://raw2.seadn.io/robinhood/0x539cdd042c2f3d93ebc5be7dfff0c79f3b4fabf0/7cbc1c5226ecce759fa0388b950b7f/067cbc1c5226ecce759fa0388b950b7f.svg",
+    "3": "https://raw2.seadn.io/robinhood/0x539cdd042c2f3d93ebc5be7dfff0c79f3b4fabf0/602093982f577437429990b3c501af/ea602093982f577437429990b3c501af.svg",
+    "4": "https://raw2.seadn.io/robinhood/0x539cdd042c2f3d93ebc5be7dfff0c79f3b4fabf0/8b0a47df5df5b00db2ea3acb6c6fd4/ba8b0a47df5df5b00db2ea3acb6c6fd4.svg",
+    "5": "https://raw2.seadn.io/robinhood/0x539cdd042c2f3d93ebc5be7dfff0c79f3b4fabf0/11753b87e86f47cff588eae2c224c5/c511753b87e86f47cff588eae2c224c5.svg",
+    "6": "https://raw2.seadn.io/robinhood/0x539cdd042c2f3d93ebc5be7dfff0c79f3b4fabf0/6447a522039e0657c6fccb239c549d/de6447a522039e0657c6fccb239c549d.svg",
+    "7": "https://raw2.seadn.io/robinhood/0x539cdd042c2f3d93ebc5be7dfff0c79f3b4fabf0/b773739e2f8ee7fc5b1691eddab0e8/14b773739e2f8ee7fc5b1691eddab0e8.svg",
+    "8": "https://raw2.seadn.io/robinhood/0x539cdd042c2f3d93ebc5be7dfff0c79f3b4fabf0/82b176255e02aea6cb6c19d7276906/3582b176255e02aea6cb6c19d7276906.svg",
+    "9": "https://raw2.seadn.io/robinhood/0x539cdd042c2f3d93ebc5be7dfff0c79f3b4fabf0/659a0a9d3a986073761bfe75c6dbd0/05659a0a9d3a986073761bfe75c6dbd0.svg",
+    "10": "https://raw2.seadn.io/robinhood/0x539cdd042c2f3d93ebc5be7dfff0c79f3b4fabf0/16ddfef2ba6cdd88a324b5b0e9312c/5d16ddfef2ba6cdd88a324b5b0e9312c.svg",
+    "11": "https://raw2.seadn.io/robinhood/0x539cdd042c2f3d93ebc5be7dfff0c79f3b4fabf0/1eed289d8d57e460ed7aedeab38cab/0e1eed289d8d57e460ed7aedeab38cab.svg",
+    "12": "https://raw2.seadn.io/robinhood/0x539cdd042c2f3d93ebc5be7dfff0c79f3b4fabf0/93c71d7a7e39f51ac0a03e85a98299/0593c71d7a7e39f51ac0a03e85a98299.svg"
+  },
+  "chain-mancers": {
+    "1": "https://raw2.seadn.io/robinhood/0x797a2e030b7e49107c8f07bf0300ea9cae88ca57/c160566e7504dd7fb21a7e2b8111b1/afc160566e7504dd7fb21a7e2b8111b1.svg",
+    "2": "https://raw2.seadn.io/robinhood/0x797a2e030b7e49107c8f07bf0300ea9cae88ca57/215edf133fca1364821f7bffb42855/aa215edf133fca1364821f7bffb42855.svg",
+    "3": "https://raw2.seadn.io/robinhood/0x797a2e030b7e49107c8f07bf0300ea9cae88ca57/ea604d27f0fa0290f06822a30f003e/e7ea604d27f0fa0290f06822a30f003e.svg",
+    "4": "https://raw2.seadn.io/robinhood/0x797a2e030b7e49107c8f07bf0300ea9cae88ca57/f6c2babe1b0ea06a92efac627df31a/d3f6c2babe1b0ea06a92efac627df31a.svg",
+    "5": "https://raw2.seadn.io/robinhood/0x797a2e030b7e49107c8f07bf0300ea9cae88ca57/22541af3e55630ca52e702e268a849/2522541af3e55630ca52e702e268a849.svg",
+    "6": "https://raw2.seadn.io/robinhood/0x797a2e030b7e49107c8f07bf0300ea9cae88ca57/381158515ae21ec2b4a6ba4396fbb5/33381158515ae21ec2b4a6ba4396fbb5.svg",
+    "7": "https://raw2.seadn.io/robinhood/0x797a2e030b7e49107c8f07bf0300ea9cae88ca57/a0b717fdba379d12e2f75aac6ab5d2/cba0b717fdba379d12e2f75aac6ab5d2.svg",
+    "8": "https://raw2.seadn.io/robinhood/0x797a2e030b7e49107c8f07bf0300ea9cae88ca57/0adc0c9300fc91c7f9e4d0e75f186a/8a0adc0c9300fc91c7f9e4d0e75f186a.svg",
+    "9": "https://raw2.seadn.io/robinhood/0x797a2e030b7e49107c8f07bf0300ea9cae88ca57/d97bb1344c3127738f3bd6459223cb/b3d97bb1344c3127738f3bd6459223cb.svg",
+    "10": "https://raw2.seadn.io/robinhood/0x797a2e030b7e49107c8f07bf0300ea9cae88ca57/c9498e46419166cc36c78bde23a315/29c9498e46419166cc36c78bde23a315.svg",
+    "11": "https://raw2.seadn.io/robinhood/0x797a2e030b7e49107c8f07bf0300ea9cae88ca57/23da4af94ab7eaeb803ec74ee633ce/9623da4af94ab7eaeb803ec74ee633ce.svg",
+    "12": "https://raw2.seadn.io/robinhood/0x797a2e030b7e49107c8f07bf0300ea9cae88ca57/5192e8dfebfa5828cf159b70d7d471/295192e8dfebfa5828cf159b70d7d471.svg"
+  },
+  "pyopyopyopyo": {
+    "1": "https://i2c.seadn.io/robinhood/0x08dc7cb3f4ccc8eea782e2924d151e2130f22b28/260f9e82810428a220be81352ff8df/e1260f9e82810428a220be81352ff8df.png",
+    "2": "https://i2c.seadn.io/robinhood/0x08dc7cb3f4ccc8eea782e2924d151e2130f22b28/9a3a439b5c6211c5ff312a4c6269eb/159a3a439b5c6211c5ff312a4c6269eb.png",
+    "3": "https://i2c.seadn.io/robinhood/0x08dc7cb3f4ccc8eea782e2924d151e2130f22b28/19e757032289042dce8e199bccff5d/a619e757032289042dce8e199bccff5d.png",
+    "4": "https://i2c.seadn.io/robinhood/0x08dc7cb3f4ccc8eea782e2924d151e2130f22b28/ae4385802f7207165ee4e22cf628a9/77ae4385802f7207165ee4e22cf628a9.png",
+    "5": "https://i2c.seadn.io/robinhood/0x08dc7cb3f4ccc8eea782e2924d151e2130f22b28/f80b49fe750b9423264982f32d3fe8/a5f80b49fe750b9423264982f32d3fe8.png",
+    "6": "https://i2c.seadn.io/robinhood/0x08dc7cb3f4ccc8eea782e2924d151e2130f22b28/5ab7ebb871309ff4367e8206a11237/d55ab7ebb871309ff4367e8206a11237.png",
+    "7": "https://i2c.seadn.io/robinhood/0x08dc7cb3f4ccc8eea782e2924d151e2130f22b28/9931480c40ed615035cdebe39f635a/8e9931480c40ed615035cdebe39f635a.png",
+    "8": "https://i2c.seadn.io/robinhood/0x08dc7cb3f4ccc8eea782e2924d151e2130f22b28/8c2033a70465c54a52c3d9f36a26c0/8f8c2033a70465c54a52c3d9f36a26c0.png",
+    "9": "https://i2c.seadn.io/robinhood/0x08dc7cb3f4ccc8eea782e2924d151e2130f22b28/292ece9711780c3e8f0df00334458d/a9292ece9711780c3e8f0df00334458d.png",
+    "10": "https://i2c.seadn.io/robinhood/0x08dc7cb3f4ccc8eea782e2924d151e2130f22b28/c5f6d3ea4edfe65b97631bf345a563/0dc5f6d3ea4edfe65b97631bf345a563.png",
+    "11": "https://i2c.seadn.io/robinhood/0x08dc7cb3f4ccc8eea782e2924d151e2130f22b28/697d4c2d291b6e923a04b180859828/7b697d4c2d291b6e923a04b180859828.png",
+    "12": "https://i2c.seadn.io/robinhood/0x08dc7cb3f4ccc8eea782e2924d151e2130f22b28/a7edb471ffc3c9a7b45b6e0df357fb/c0a7edb471ffc3c9a7b45b6e0df357fb.png"
+  }
+}

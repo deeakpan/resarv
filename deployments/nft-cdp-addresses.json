@@ -1,0 +1,58 @@
+{
+  "4663": {
+    "chainId": 4663,
+    "addresses": {
+      "rusd": "0xdCCb918e7149A7bcd15256a49Ebbf58a0bE50DA1",
+      "rsrv": "0x0000000000000000000000000000000000000000",
+      "rsrvStaking": "0x0000000000000000000000000000000000000000",
+      "stabilityPool": "0xb9F9afA92104403C3928564665758Adae29bc0A8",
+      "nftCdp": "0x70f66E4429ECAA3dDB6E535F8da607D71CFd1819",
+      "priceSigner": "0x8b3F6f45C8fDd9196be598828FF882f846314412",
+      "treasury": "0x8b3F6f45C8fDd9196be598828FF882f846314412",
+      "mockNft": "0x0000000000000000000000000000000000000000",
+      "mintedTokenIds": [],
+      "supportedCollections": [
+        "0x539cdd042c2f3d93ebc5be7dfff0c79f3b4fabf0",
+        "0x2cb61a81cec32534de271666fa020c89c2dd1920",
+        "0x6581b6fa83e714956935cd1e16ac8f6f5c44c484"
+      ],
+      "stakingEnabled": false
+    },
+    "deployedAt": "2026-09-18T17:56:41.486Z"
+  },
+  "46630": {
+    "chainId": 46630,
+    "addresses": {
+      "rusd": "0x0000000000000000000000000000000000000000",
+      "rsrv": "0x0000000000000000000000000000000000000000",
+      "rsrvStaking": "0x0000000000000000000000000000000000000000",
+      "stabilityPool": "0x0000000000000000000000000000000000000000",
+      "nftCdp": "0x0000000000000000000000000000000000000000",
+      "priceSigner": "0x0000000000000000000000000000000000000000",
+      "treasury": "0x0000000000000000000000000000000000000000",
+      "mockNft": "0x0000000000000000000000000000000000000000"
+    },
+    "deployedAt": null
+  },
+  "50312": {
+    "chainId": 50312,
+    "addresses": {
+      "rusd": "0x0c1A300DA908023f6F656C0E53ce30Fe3fFBA264",
+      "rsrv": "0x333ea3058b83dE965F1482A19840471888b2311a",
+      "rsrvStaking": "0x82f5BE54280319435AC415F8e97A0c71593C5878",
+      "stabilityPool": "0xe52FF6495AC152254dF8bA6776a28800BF210F76",
+      "nftCdp": "0x9B1b931A53AB981cF3CA06A1fc1b602B53451546",
+      "priceSigner": "0x87651FBb7006A63C8288e74269d0BFf5312b2234",
+      "treasury": "0x87651FBb7006A63C8288e74269d0BFf5312b2234",
+      "mockNft": "0xCfCC3ED48cd3204b407c85312744BC74f98b6C94",
+      "mintedTokenIds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    "deployedAt": "2026-09-17T19:53:13.374Z"
+  }
+}

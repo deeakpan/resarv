@@ -1,26 +1,197 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Page + surfaces (stake-style) */
+  --background: #0b0b0b;
+  --foreground: #f5f5f5;
+  --surface: #1b1b1b;
+  --surface-hover: #222222;
+  /* Inputs / tabs: dark grey, not pure black */
+  --input: #121212;
+  --input-elevated: #161616;
+  --border: transparent;
+  --muted: #8a8a8a;
+  --muted-2: #6b6b6b;
+  --primary: #f5f5f5;
+  --danger: #ff5c5c;
+  --success: #13a248;
+
+  /* RESARV logo accents */
+  --resarv-blue: #1366f3;
+  --resarv-green: #13a248;
+  --resarv-orange: #ff9900;
+  --resarv-purple: #8c32e9;
+  --resarv-pink: #ff1d6b;
+  --resarv-cyan: #16b5e8;
+
+  /* CTA = logo orange (dark label like stake gold CTA) */
+  --cta: var(--resarv-orange);
+  --cta-hover: #ffad33;
+  --cta-text: #0b0b0b;
+
+  --scrollbar: #1b1b1b;
+  --scrollbar-thumb: #333;
+
+  /* Rainbow stack: SF Pro Rounded on Apple, Nunito elsewhere */
+  --font-rounded: ui-rounded, "SF Pro Rounded", "SF Rounded",
+    var(--font-rounded-fallback), system-ui, -apple-system, sans-serif;
+  --font-landing: var(--font-rounded);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --color-primary: var(--primary);
+  --font-sans: var(--font-rounded);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+html,
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+button:enabled {
+  cursor: pointer;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.resarv-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar);
+}
+
+.resarv-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.resarv-scroll::-webkit-scrollbar-track {
+  background: var(--scrollbar);
+  border-radius: 999px;
+}
+
+.resarv-scroll::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 999px;
+}
+
+.resarv-scroll::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+@keyframes resarv-sheet-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes resarv-sheet-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.resarv-sheet {
+  animation: resarv-sheet-up 0.28s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+@media (min-width: 768px) {
+  .resarv-sheet {
+    animation: resarv-sheet-in 0.2s ease-out;
+  }
+}
+
+/* Landing */
+.landing-glow {
+  background:
+    radial-gradient(ellipse 55% 50% at 22% 48%, rgba(19, 102, 243, 0.18), transparent 60%),
+    radial-gradient(ellipse 45% 40% at 78% 62%, rgba(255, 153, 0, 0.1), transparent 58%),
+    radial-gradient(ellipse 35% 30% at 60% 12%, rgba(140, 50, 233, 0.08), transparent 55%);
+  animation: landing-glow-drift 14s ease-in-out infinite alternate;
+}
+
+.landing-phone {
+  /* keep class for targeting; no transform animations — they break sticky pinning */
+}
+
+.landing-phone-aura {
+  animation: landing-aura-pulse 6s ease-in-out infinite alternate;
+}
+
+.landing-rise {
+  animation: landing-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.landing-rise-delay {
+  animation: landing-rise 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.08s both;
+}
+
+.landing-rise-delay-2 {
+  animation: landing-rise 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.16s both;
+}
+
+.landing-rise-delay-3 {
+  animation: landing-rise 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.24s both;
+}
+
+@keyframes landing-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes landing-phone-in {
+  from {
+    opacity: 0;
+    transform: translateY(28px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes landing-glow-drift {
+  /* opacity-only — transform on ancestors/siblings near sticky can break pinning */
+  from {
+    opacity: 0.85;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes landing-aura-pulse {
+  from {
+    opacity: 0.7;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.06);
+  }
 }

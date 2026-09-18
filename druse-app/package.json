@@ -1,0 +1,46 @@
+{
+  "name": "druse-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "compile": "hardhat compile",
+    "test:contracts": "hardhat test",
+    "deploy:unichain": "hardhat run scripts/deploy.ts --network unichainSepolia",
+    "deploy:robinhood": "hardhat run scripts/deploy.ts --network robinhood",
+    "e2e:unichain": "hardhat run scripts/e2e.ts --network unichainSepolia",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@reown/appkit": "^1.8.23",
+    "@reown/appkit-adapter-wagmi": "^1.8.23",
+    "@tanstack/react-query": "^5.102.8",
+    "next": "16.3.4",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "viem": "^2.56.3",
+    "wagmi": "^3.7.7"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-ethers": "^3.1.0",
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@openzeppelin/contracts": "^4.9.6",
+    "@openzeppelin/contracts-upgradeable": "^4.9.6",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20.19.43",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@uniswap/v4-core": "^1.0.2",
+    "@uniswap/v4-periphery": "^1.0.3",
+    "dotenv": "^17.4.2",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.4",
+    "ethers": "^6.17.0",
+    "hardhat": "^2.22.19",
+    "tailwindcss": "^4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}
