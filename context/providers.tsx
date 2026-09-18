@@ -2,7 +2,6 @@
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createAppKit } from "@reown/appkit/react";
-import { ChainController } from "@reown/appkit-controllers";
 import { type ReactNode, useState } from "react";
 import { cookieToInitialState, WagmiProvider, type Config } from "wagmi";
 import {
@@ -22,15 +21,6 @@ const ROBINHOOD_RPC =
 
 const ACTIVE_CAIP = `eip155:${ROBINHOOD_MAINNET_CHAIN_ID}` as const;
 
-if (typeof window !== "undefined") {
-  try {
-    window.localStorage.setItem("@appkit/active_caip_network_id", ACTIVE_CAIP);
-    window.localStorage.setItem("@appkit/active_namespace", "eip155");
-  } catch {
-    /* ignore */
-  }
-}
-
 createAppKit({
   adapters: [wagmiAdapter],
   projectId,
@@ -39,12 +29,14 @@ createAppKit({
   customRpcUrls: {
     [ACTIVE_CAIP]: [{ url: ROBINHOOD_RPC }],
   },
-  allowUnsupportedChain: false,
+  // Don't force a chain switch (MetaMask popup) just because the wallet is on another network
+  allowUnsupportedChain: true,
   enableInjected: true,
   enableEIP6963: true,
   enableWalletConnect: true,
   enableBaseAccount: false,
   enableCoinbase: false,
+  enableWalletGuide: false,
   allWallets: "SHOW",
   featuredWalletIds: [METAMASK_WALLET_ID],
   metadata: {
@@ -73,11 +65,6 @@ createAppKit({
     swaps: false,
   },
 });
-
-if (typeof window !== "undefined") {
-  ChainController.setRequestedCaipNetworks([robinhoodMainnet], "eip155");
-  ChainController.setActiveCaipNetwork(robinhoodMainnet);
-}
 
 export default function Providers({
   children,
