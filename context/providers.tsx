@@ -7,23 +7,24 @@ import { type ReactNode, useState } from "react";
 import { cookieToInitialState, WagmiProvider, type Config } from "wagmi";
 import {
   METAMASK_WALLET_ID,
+  ROBINHOOD_MAINNET_CHAIN_ID,
   networks,
   projectId,
-  somniaTestnet,
+  robinhoodMainnet,
   wagmiAdapter,
 } from "@/config/appkit";
 import ToastHost from "@/app/components/ToastHost";
 
-const SOMNIA_RPC =
-  process.env.NEXT_PUBLIC_SOMNIA_TESTNET_RPC?.trim() ||
-  "https://api.infra.testnet.somnia.network";
+const ROBINHOOD_RPC =
+  process.env.NEXT_PUBLIC_RH_MAINNET_RPC?.trim() ||
+  process.env.RH_MAINNET_RPC?.trim() ||
+  "https://rpc.mainnet.chain.robinhood.com";
+
+const ACTIVE_CAIP = `eip155:${ROBINHOOD_MAINNET_CHAIN_ID}` as const;
 
 if (typeof window !== "undefined") {
   try {
-    window.localStorage.setItem(
-      "@appkit/active_caip_network_id",
-      "eip155:50312",
-    );
+    window.localStorage.setItem("@appkit/active_caip_network_id", ACTIVE_CAIP);
     window.localStorage.setItem("@appkit/active_namespace", "eip155");
   } catch {
     /* ignore */
@@ -34,9 +35,9 @@ createAppKit({
   adapters: [wagmiAdapter],
   projectId,
   networks: [...networks],
-  defaultNetwork: somniaTestnet,
+  defaultNetwork: robinhoodMainnet,
   customRpcUrls: {
-    "eip155:50312": [{ url: SOMNIA_RPC }],
+    [ACTIVE_CAIP]: [{ url: ROBINHOOD_RPC }],
   },
   allowUnsupportedChain: false,
   enableInjected: true,
@@ -48,15 +49,15 @@ createAppKit({
   featuredWalletIds: [METAMASK_WALLET_ID],
   metadata: {
     name: "Resarv",
-    description: "NFT-backed rUSD CDP on Somnia Testnet",
+    description: "NFT-backed rUSD CDP on Robinhood Chain",
     url:
       typeof window !== "undefined"
         ? window.location.origin
-        : "http://localhost:3000",
+        : "https://resarv.xyz",
     icons: [
       typeof window !== "undefined"
         ? `${window.location.origin}/logo.png`
-        : "http://localhost:3000/logo.png",
+        : "https://resarv.xyz/logo.png",
     ],
   },
   themeMode: "dark",
@@ -74,8 +75,8 @@ createAppKit({
 });
 
 if (typeof window !== "undefined") {
-  ChainController.setRequestedCaipNetworks([somniaTestnet], "eip155");
-  ChainController.setActiveCaipNetwork(somniaTestnet);
+  ChainController.setRequestedCaipNetworks([robinhoodMainnet], "eip155");
+  ChainController.setActiveCaipNetwork(robinhoodMainnet);
 }
 
 export default function Providers({
