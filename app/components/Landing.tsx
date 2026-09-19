@@ -91,7 +91,8 @@ function withRsrvLink(text: string) {
         href={RSRV_LAUNCHPAD}
         target="_blank"
         rel="noopener noreferrer"
-        className="underline decoration-transparent underline-offset-[3px] transition-[color,text-decoration-color] hover:text-white hover:decoration-white"
+        className="relative z-20 cursor-pointer font-semibold text-white underline decoration-white/50 underline-offset-[3px] transition-[color,text-decoration-color] hover:decoration-white"
+        onClick={(e) => e.stopPropagation()}
       >
         RSRV
       </a>
@@ -233,7 +234,7 @@ function SceneCopy({
             : `text-[clamp(0.95rem,1.35vw,1.125rem)] ${on ? "text-[#888]" : "text-[#333]"}`
         }`}
       >
-        {scene.body}
+        {withRsrvLink(scene.body)}
       </p>
       {showCta ? (
         <Link
