@@ -79,6 +79,28 @@ const FAQS = [
   },
 ] as const;
 
+const RSRV_LAUNCHPAD =
+  "https://www.ponsfamily.com/launchpad/0x85b48980E6d2f3f490f2c6460d39cdD3A60101B0";
+
+function withRsrvLink(text: string) {
+  const parts = text.split(/(RSRV)/g);
+  return parts.map((part, i) =>
+    part === "RSRV" ? (
+      <a
+        key={i}
+        href={RSRV_LAUNCHPAD}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="underline decoration-transparent underline-offset-[3px] transition-[color,text-decoration-color] hover:text-white hover:decoration-white"
+      >
+        RSRV
+      </a>
+    ) : (
+      <span key={i}>{part}</span>
+    ),
+  );
+}
+
 function NftStack({ dimmed }: { dimmed?: boolean }) {
   return (
     <span
