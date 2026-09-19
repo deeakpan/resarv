@@ -3,8 +3,8 @@
     "chainId": 4663,
     "addresses": {
       "rusd": "0xdCCb918e7149A7bcd15256a49Ebbf58a0bE50DA1",
-      "rsrv": "0x435F07256cf060FD351e2e645343AF8992EAd133",
-      "rsrvStaking": "0xC0f36d639a8BD30D26D2bb05cEEb08a296d2AE18",
+      "rsrv": "0x85b48980E6d2f3f490f2c6460d39cdD3A60101B0",
+      "rsrvStaking": "0x10ec5014B6F4c9bA5E5f48037a12610ee95bffAa",
       "stabilityPool": "0xb9F9afA92104403C3928564665758Adae29bc0A8",
       "nftCdp": "0x70f66E4429ECAA3dDB6E535F8da607D71CFd1819",
       "priceSigner": "0x8b3F6f45C8fDd9196be598828FF882f846314412",
