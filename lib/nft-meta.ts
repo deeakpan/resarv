@@ -121,7 +121,20 @@ export async function fetchTokenMetas(
   collection: string,
   tokenIds: number[],
 ): Promise<NftTokenMeta[]> {
-  return Promise.all(tokenIds.map((id) => fetchTokenMeta(collection, id)));
+  const reg = collectionByAddress(collection);
+  const fallbackImage = reg?.logoUrl || "/nfts/stonk.svg";
+  const results = await Promise.allSettled(
+    tokenIds.map((id) => fetchTokenMeta(collection, id)),
+  );
+  return results.map((r, i) => {
+    if (r.status === "fulfilled") return r.value;
+    return {
+      tokenId: tokenIds[i],
+      name: `${reg?.name || "NFT"} #${tokenIds[i]}`,
+      image: fallbackImage,
+      collection,
+    };
+  });
 }
 
 /** @deprecated */

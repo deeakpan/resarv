@@ -12,10 +12,12 @@ import {
 import { RH_NFT_COLLECTIONS, collectionByAddress } from "@/lib/collections";
 import { pretty } from "@/lib/format";
 import { useProtocol } from "@/lib/protocol";
+import { useOwnedNfts } from "@/lib/owned-nfts";
 import { erc20Abi, erc721Abi, nftCdpAbi } from "@/lib/abi";
 import {
   BorrowPanel,
   CollectionHeader,
+  type NftPick,
   useStonkFloor,
 } from "@/app/components/NftDropdown";
 import {
@@ -42,32 +44,84 @@ export default function TroveCard({
   const protocol = useProtocol();
   const { writeContractAsync, isPending } = useWriteContract();
   const addrs = protocol.addresses;
-  const collections =
-    addrs?.supportedCollections?.length
-      ? addrs.supportedCollections
-      : RH_NFT_COLLECTIONS.map((c) => c.address);
-
-  const [collection, setCollection] = useState<Address>(
-    (collections[0] as Address) || ZERO_ADDRESS,
+  const collectionAddrs = useMemo(
+    () =>
+      (addrs?.supportedCollections?.length
+        ? addrs.supportedCollections
+        : RH_NFT_COLLECTIONS.map((c) => c.address)) as Address[],
+    [addrs?.supportedCollections],
   );
-  const [tokenId, setTokenId] = useState("");
+
+  const registryCollections = useMemo(
+    () =>
+      collectionAddrs
+        .map((a) => collectionByAddress(a))
+        .filter((c): c is NonNullable<typeof c> => Boolean(c)),
+    [collectionAddrs],
+  );
+
+  const [pick, setPick] = useState<NftPick | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
   const [signing, setSigning] = useState(false);
+  const [floors, setFloors] = useState<Record<string, string>>({});
+
+  const collection = (pick?.collection as Address) || ZERO_ADDRESS;
+  const tokenId = pick?.tokenId || "";
+
+  const { nfts: owned, loading: loadingOwned } = useOwnedNfts(
+    collectionAddrs,
+    protocol.address,
+    protocol.chainId,
+  );
+
+  const { priceWad, floorUsd, floorLabel } = useStonkFloor(
+    collection !== ZERO_ADDRESS ? collection : undefined,
+  );
+  const reg = collectionByAddress(collection);
 
   useEffect(() => {
-    if (!collections.length) return;
-    const stillValid = collections.some(
-      (c) => c.toLowerCase() === collection.toLowerCase(),
-    );
-    if (!stillValid) setCollection(collections[0] as Address);
-  }, [collections, collection]);
+    let cancelled = false;
+    void (async () => {
+      const next: Record<string, string> = {};
+      await Promise.all(
+        collectionAddrs.map(async (c) => {
+          try {
+            const res = await fetch(
+              `/api/nft-floor?collection=${encodeURIComponent(c)}`,
+            );
+            const data = (await res.json()) as { floorUsd?: number };
+            if (typeof data.floorUsd === "number") {
+              next[c.toLowerCase()] = data.floorUsd.toLocaleString(undefined, {
+                style: "currency",
+                currency: "USD",
+                maximumFractionDigits: 0,
+              });
+            }
+          } catch {
+            /* ignore */
+          }
+        }),
+      );
+      if (!cancelled) setFloors(next);
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [collectionAddrs]);
 
-  const { priceWad, floorUsd, floorLabel } = useStonkFloor(collection);
-  const reg = collectionByAddress(collection);
-  const tokenIds = addrs?.mintedTokenIds?.length
-    ? addrs.mintedTokenIds
-    : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  // Drop selection if wallet no longer owns it
+  useEffect(() => {
+    if (!pick || !protocol.address) return;
+    const still = owned.some(
+      (n) =>
+        n.collection.toLowerCase() === pick.collection.toLowerCase() &&
+        String(n.tokenId) === pick.tokenId,
+    );
+    if (!loadingOwned && owned.length > 0 && !still) {
+      setPick(null);
+    }
+  }, [owned, pick, loadingOwned, protocol.address]);
 
   const position = useReadContract({
     address: addrs?.nftCdp,
@@ -110,7 +164,6 @@ export default function TroveCard({
     ownerOf.data?.toLowerCase() === protocol.address.toLowerCase();
 
   const feeBps = protocol.borrowFee ?? NFT_BORROW_FEE;
-  // Match NFTCDP.maxBorrow: debt (borrow + fee) must stay ≤ MAX_LTV
   const borrowWei = useMemo(() => {
     if (!tokenId || !priceWad) return 0n;
     return (priceWad * NFT_MAX_LTV) / (DECIMAL_PRECISION + feeBps);
@@ -121,7 +174,10 @@ export default function TroveCard({
   const ltvPct = Number(NFT_MAX_LTV) / 1e16;
   const loading = busy || isPending || signing;
 
-  const run = async (fn: () => Promise<void>, success = "Transaction successful") => {
+  const run = async (
+    fn: () => Promise<void>,
+    success = "Transaction successful",
+  ) => {
     setError(null);
     setBusy(true);
     try {
@@ -239,38 +295,13 @@ export default function TroveCard({
 
   return (
     <Card title="NFT CDP" open={open} onToggle={onToggle}>
-      {collections.length > 1 ? (
-        <div className="mb-3 flex flex-wrap gap-2">
-          {collections.map((c) => {
-            const meta = collectionByAddress(c);
-            const active = c.toLowerCase() === collection.toLowerCase();
-            return (
-              <button
-                key={c}
-                type="button"
-                onClick={() => {
-                  setCollection(c as Address);
-                  setTokenId("");
-                  setError(null);
-                }}
-                className={`rounded-full px-3 py-1.5 text-[12px] font-semibold transition ${
-                  active
-                    ? "bg-white text-black"
-                    : "bg-[var(--input)] text-[var(--muted)] hover:text-white"
-                }`}
-              >
-                {meta?.name || "Collection"}
-              </button>
-            );
-          })}
-        </div>
+      {pick && reg ? (
+        <CollectionHeader
+          name={reg.name}
+          address={collection}
+          logoUrl={reg.logoUrl}
+        />
       ) : null}
-
-      <CollectionHeader
-        name={reg?.name || "Collection"}
-        address={collection}
-        logoUrl={reg?.logoUrl}
-      />
 
       {hasPosition ? (
         <>
@@ -286,30 +317,19 @@ export default function TroveCard({
         <>
           <BorrowPanel
             amountWei={borrowWei}
-            selectedId={tokenId}
-            tokenIds={tokenIds}
-            floorLabel={floorLabel}
+            selected={pick}
+            collections={registryCollections}
+            owned={owned}
+            floors={floors}
+            loadingOwned={loadingOwned}
             floorUsd={floorUsd}
             ltvPct={ltvPct}
             feePct={protocol.borrowFeePct}
-            onSelect={setTokenId}
-            collection={collection}
-            collectionName={reg?.name}
+            onSelect={(next) => {
+              setPick(next);
+              setError(null);
+            }}
           />
-          <label className="mb-3 block text-[12px] font-medium text-[var(--muted)]">
-            Or enter token id
-            <input
-              type="text"
-              inputMode="numeric"
-              value={tokenId}
-              onChange={(e) => {
-                const v = e.target.value.replace(/\D/g, "");
-                setTokenId(v);
-              }}
-              placeholder="e.g. 42"
-              className="mt-1 w-full rounded-xl bg-[var(--input)] px-3 py-2.5 text-[14px] font-semibold text-white outline-none"
-            />
-          </label>
           {actions}
           <div className="mt-4">
             <SummaryRow label="Max LTV">{ltvPct}%</SummaryRow>
@@ -318,6 +338,7 @@ export default function TroveCard({
             </SummaryRow>
             {tokenId && priceWad ? (
               <>
+                <SummaryRow label="Floor">{floorLabel}</SummaryRow>
                 <SummaryRow label="Fee ≈">{pretty(fee)} rUSD</SummaryRow>
                 <SummaryRow label="Total debt ≈">
                   {pretty(totalDebt)} rUSD
@@ -325,10 +346,15 @@ export default function TroveCard({
               </>
             ) : (
               <SummaryRow label="Preview">
-                {!tokenId ? "Select an NFT" : "Fetching floor…"}
+                {!tokenId ? "Select an NFT you own" : "Fetching floor…"}
               </SummaryRow>
             )}
           </div>
+          {!protocol.address ? (
+            <p className="mt-3 text-sm font-medium text-[var(--muted)]">
+              Connect a wallet to see your NFTs.
+            </p>
+          ) : null}
           {tokenId && !ownsNft ? (
             <p className="mt-3 text-sm font-medium text-[var(--muted)]">
               Connect the wallet that holds this NFT.
