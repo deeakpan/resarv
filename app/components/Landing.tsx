@@ -59,7 +59,7 @@ const SCENES = [
 const FAQS = [
   {
     q: "What is Resarv?",
-    a: "Resarv is an NFT CDP on Somnia. Deposit eligible NFTs as collateral, mint rUSD, stake RSRV for fees, and use the Stability Pool to back liquidations.",
+    a: "Resarv is an NFT CDP on Robinhood Chain. Deposit eligible NFTs as collateral, mint rUSD, stake RSRV for fees, and use the Stability Pool to back liquidations.",
   },
   {
     q: "How is my borrow limit calculated?",

@@ -23,11 +23,13 @@ const geistMono = Geist_Mono({
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ||
-  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
+  (process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : "https://resarv.xyz");
 
 const title = "Resarv";
 const description =
-  "Borrow rUSD against NFT collateral on Somnia. Stake RSRV, use the Stability Pool, and earn protocol fees.";
+  "Borrow rUSD against NFT collateral on Robinhood Chain. Stake RSRV, use the Stability Pool, and earn protocol fees.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

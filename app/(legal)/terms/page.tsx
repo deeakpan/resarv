@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Terms of Use",
   description:
-    "Terms governing use of the Resarv interface and protocol interactions on Somnia.",
+    "Terms governing use of the Resarv interface and protocol interactions on Robinhood Chain.",
 };
 
 export default function TermsPage() {
@@ -27,7 +27,7 @@ export default function TermsPage() {
         <section className="space-y-2">
           <h2 className="text-base font-semibold text-white">Interface only</h2>
           <p>
-            Resarv provides a web interface to smart contracts on Somnia. The
+            Resarv provides a web interface to smart contracts on Robinhood Chain. The
             interface may change, break, or become unavailable. Protocol logic
             lives on-chain and may differ from what the UI displays.
           </p>

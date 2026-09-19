@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
-    "How Resarv handles wallet connections, cookies, and on-chain data on Somnia.",
+    "How Resarv handles wallet connections, cookies, and on-chain data on Robinhood Chain.",
 };
 
 export default function PrivacyPage() {
@@ -20,7 +20,7 @@ export default function PrivacyPage() {
           <h2 className="text-base font-semibold text-white">Overview</h2>
           <p>
             Resarv is a decentralized application for borrowing rUSD against NFT
-            collateral on Somnia. This policy explains what information is used
+            collateral on Robinhood Chain. This policy explains what information is used
             when you visit the site or connect a wallet.
           </p>
         </section>

@@ -5,7 +5,7 @@ import RiskyTroves from "@/app/components/RiskyTroves";
 export const metadata: Metadata = {
   title: "Risky Troves",
   description:
-    "Browse undercollateralized Resarv troves eligible for liquidation on Somnia.",
+    "Browse undercollateralized Resarv troves eligible for liquidation on Robinhood Chain.",
 };
 
 export default function RiskyTrovesPage() {
